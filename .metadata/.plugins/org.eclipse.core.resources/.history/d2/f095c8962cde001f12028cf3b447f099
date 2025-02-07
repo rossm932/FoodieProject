@@ -1,0 +1,5 @@
+package com.foodie.foodiebackend.model;
+
+public class User {
+
+}

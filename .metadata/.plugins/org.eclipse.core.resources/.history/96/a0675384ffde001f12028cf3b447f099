@@ -1,0 +1,36 @@
+package com.foodie.foodiebackend.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "menu_item")  // ✅ Matches your database table name
+public class MenuItem {  // Or rename to Dish.java for clarity
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id", nullable = false)  // ✅ Links menu item to restaurant
+    private Restaurant restaurant;
+
+    // Constructors
+    public MenuItem() {}
+    public MenuItem(String name, double price, Restaurant restaurant) {
+        this.name = name;
+        this.price = price;
+        this.restaurant = restaurant;
+    }
+
+    // Getters & Setters
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+
+    public Restaurant getRestaurant() { return restaurant; }
+    public void setRestaurant(Restaurant restaurant) { this.restaurant = restaurant; }
+}

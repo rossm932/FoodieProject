@@ -1,0 +1,5 @@
+package com.foodie.foodiebackend.controller;
+
+public class MenuController {
+
+}

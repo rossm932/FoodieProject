@@ -1,0 +1,5 @@
+package com.foodie.foodiebackend.service;
+
+public class UserService {
+
+}

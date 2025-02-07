@@ -1,0 +1,26 @@
+package com.foodie.foodiebackend.controller;
+
+import com.foodie.foodiebackend.model.Restaurant;
+import com.foodie.foodiebackend.repository.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/restaurants")  // <-- Make sure this is correct
+public class RestaurantController {
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
+    @PostMapping
+    public Restaurant addRestaurant(@RequestBody Restaurant restaurant) {
+        return restaurantRepository.save(restaurant);
+    }
+
+    @GetMapping
+    public List<Restaurant> getAllRestaurants() {
+        return restaurantRepository.findAll();
+    }
+}

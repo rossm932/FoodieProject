@@ -1,0 +1,36 @@
+package com.foodie.foodiebackend.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.foodie.foodiebackend.model.MenuItem;
+import com.foodie.foodiebackend.model.Restaurant;
+import com.foodie.foodiebackend.repository.MenuItemRepository;
+
+@RestController
+@RequestMapping("/api/menu")
+public class MenuController {
+
+    @Autowired
+    private MenuItemRepository menuItemRepository;
+
+    // ✅ Get all menu items for a specific restaurant
+    @GetMapping("/{restaurantId}")
+    public List<MenuItem> getMenuByRestaurant(@PathVariable Long restaurantId) {
+        return menuItemRepository.findByRestaurantId(restaurantId);
+    }
+
+    // ✅ Add a new menu item to a restaurant
+    @PostMapping("/{restaurantId}")
+    public MenuItem addDish(@PathVariable Long restaurantId, @RequestBody MenuItem menuItem) {
+        menuItem.setRestaurant(new Restaurant(restaurantId, null, null, null));  // Setting only ID
+        return menuItemRepository.save(menuItem);
+    }
+}

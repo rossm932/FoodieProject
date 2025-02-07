@@ -1,0 +1,24 @@
+package com.foodie.foodiebackend.config;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/auth/**").permitAll()  // Open for login
+                .requestMatchers("/api/admin/**").hasRole("ADMIN")  // Only Admin can access
+                .anyRequest().authenticated()
+            )
+            .httpBasic();  // For simplicity, using basic auth. Replace with JWT for advanced security.
+
+        return http.build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}

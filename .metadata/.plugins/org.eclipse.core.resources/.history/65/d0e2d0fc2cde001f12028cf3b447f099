@@ -1,0 +1,21 @@
+package com.foodie.foodiebackend.model;
+
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "orders")
+public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String customerName;
+    private String status;
+
+    @OneToMany
+    private List<MenuItem> items;
+
+    // Getters and Setters
+}

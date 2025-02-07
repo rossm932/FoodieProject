@@ -1,0 +1,36 @@
+package com.foodie.foodiebackend.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+            .cors().and()
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/auth/**").permitAll()  // Public API for login/signup
+                .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")  // ✅ FIXED: Correct role checking
+                .anyRequest().authenticated() // All other requests require authentication
+            )
+            .logout().permitAll() // ✅ Allow logout
+            .and()
+            .sessionManagement().disable()  // ✅ Disable default session (use JWT instead)
+            .httpBasic().disable();  // ✅ No browser login pop-up
+
+        return http.build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}

@@ -1,0 +1,20 @@
+package com.foodie.foodiebackend.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "menu_items")
+public class MenuItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private double price;
+    
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
+    // Getters and Setters
+}
