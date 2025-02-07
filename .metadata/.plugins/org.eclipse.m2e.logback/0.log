@@ -519,3 +519,6 @@
 2025-02-06 11:44:54,500 [Worker-545: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2025-02-06 11:44:54,561 [Worker-545: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2025-02-06 11:44:54,565 [Worker-545: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\rossm\OneDrive\Desktop\experis-training\capstoneproject\foodiebackend\src\test\resources
+2025-02-07 11:37:18,733 [Worker-595: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-02-07 11:37:18,765 [Worker-595: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-02-07 11:37:18,772 [Worker-595: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\rossm\OneDrive\Desktop\experis-training\capstoneproject\foodiebackend\src\test\resources
